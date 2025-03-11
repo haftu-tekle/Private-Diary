@@ -22,13 +22,54 @@ def view_entries(entries):
             print(f'date:{entry['date']}')
             print(f'content:{entry['content']}')
 
-def search_entries(entries):
-    keyword=input('Enter the keyword of the entry')
+def search_keyword(entries):
+    keyword=input('Enter the keyword to search for')
     found=False
     for i, entry in enumerate(entries, start=1):
-        if keyword.lower() in entry['content'].lower():
-            print(f'\ Entry{i}')
-            print(f'date:{entry['date']}')
-            print(f'content:{entry['content']}')
+        if keyword.lower() in entry['content']:
+            print(f'\n Entry{i}')
+            print(f'Date: {entry['date']}')
+            print(f'Content: {entry['content']}')
+            found=True
+
+    if not found:
+        print('There is no entry matched')
+
+def delete_entry(entries):
+    view_entries
+    try:
+        entry_num=int(input('Enter the number to be displayed'))
+        if 1 <= entry_num <=len(entries):
+            removed_entry=entries.pop(entry_num-1)
+            print(f'Entry from date{removed_entry['date']} has been deleted successfully ')
         else:
-            print('There is no entry found')
+            print('Invalid number')
+
+    except ValueError:
+        print('Please enter the valid value')
+
+def main():
+    entries=[]
+    while True:
+        display_menu
+        try:
+            choice=int(input('Enter the right number to be displayed'))
+            if 1 > choice >5 :
+                add_entry
+            elif choice ==2:
+                view_entries
+            elif choice==3:
+                search_keyword
+            elif choice==4:
+                delete_entry
+            elif choice==5:
+                print('Goodbye, Have a nice dreams!!')
+                break
+            else:
+                print('Enter the value between 1 and 5')
+        except ValueError:
+                print('Please enter the rigth value')
+            
+if __name__=='__main__':
+    main()
+    
