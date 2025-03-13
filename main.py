@@ -36,6 +36,10 @@ def search_keyword(entries):
         print('There are no entries matched.') 
 
 def delete_entry(entries):
+    view_entries(entries)
+    if not entries:
+        print('There is no entry found')
+        return
     view_entries(entries) 
     try:
         entry_num = int(input('Enter the number to be displayed: '))
