@@ -1,3 +1,4 @@
+from datetime import datetime
 def display_menu():
     print('\nPersonal Diary application')
     print('1 New diary')
@@ -7,9 +8,25 @@ def display_menu():
     print('5 Exit')
 
 def add_entry(entries):
-    date = input('Enter the date in the following format(YYYY-MM-DD): ')
+    choice=input('Enter C for the current date '
+    '         Enter E to enter the date manually')
+    if choice=='c':
+        date=datetime.now().date()
+    elif choice=='e':
+        while True:
+            try:
+                date_str=input('Enter the date format YYYY-MM-Dd')
+                date=datetime.strptime(date_str, '%Y-%m-%d')
+                break
+            except ValueError:
+                print('Enter the valid format')
+    else:
+        print('You have enterd the invalid value as a result the current date will be used')
+        date=datetime.now().date()
+
+        
     content = input('Enter the entry of your journal: ')
-    entry = {'date': date, 'content': content}
+    entry = {'date': str(date), 'content': content}
     entries.append(entry)
     print('Your journal has been created successfully.')
 
