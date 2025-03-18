@@ -3,6 +3,9 @@ from app.database import get_db_connection
 from datetime import datetime
 main=Blueprint(__name__)
 
+
+#Making the commits
+
 @main.route('/entries', methods=['POST'])
 def add_entry():
     DATA=request.get_json()
