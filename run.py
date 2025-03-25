@@ -3,3 +3,4 @@ app=creat_app()
 
 if __name__=='__main__':
     app.run(debug=True)
+    print('It has startedrunning succesfully')
